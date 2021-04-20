@@ -53,3 +53,5 @@ So we'll stick with the first choice for now, i'll structure the code so it can 
 ## Issues encountered
 
 with the kotlinx.serialization plugin there seems to be an issue with the kotlin compiler version even though its configured with the correct compiler... I guess were switching to gradle 🙄
+As much as I hate it, at least I know it...
+

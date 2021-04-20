@@ -1,4 +1,4 @@
-package com.tech.challenge
+package tech.challenge
 
 import kotlinx.serialization.Serializable
 

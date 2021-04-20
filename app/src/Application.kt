@@ -1,20 +1,21 @@
-package com.tech.challenge
+package tech.challenge
 
 import io.ktor.application.*
 import io.ktor.features.*
-import io.ktor.request.*
 import io.ktor.response.*
+import io.ktor.request.*
 import io.ktor.routing.*
 import io.ktor.serialization.*
-import io.ktor.server.engine.*
-import io.ktor.server.netty.*
 
-fun main() {
-    embeddedServer(Netty, port = 8000) {
-        install(ContentNegotiation) {
-            json()
-        }
-        routing {
+fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
+
+@Suppress("unused") // Referenced in application.conf
+@kotlin.jvm.JvmOverloads
+fun Application.module(testing: Boolean = false) {
+    install(ContentNegotiation) {
+        json()
+    }
+    routing {
             get("/") {
                 call.respondText("Hello, World")
             }
@@ -27,5 +28,6 @@ fun main() {
 
             }
         }
-    }.start(wait = true)
+
 }
+
