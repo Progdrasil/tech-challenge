@@ -10,6 +10,7 @@ Just a listing of the times spent on this answer:
 | Start            | End   | Duration | Comments           |
 | :--------------- | :---- | :------: | :----------------- |
 | 2021-04-14 17:25 | 18:20 | 55 mins  | Setup and planning |
+| 2021-04-20 15:51 |       |          |                    |
 
 
 ## Technologies used
