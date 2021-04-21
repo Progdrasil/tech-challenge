@@ -11,9 +11,9 @@ data class Bundle(
 
 @Serializable
 data class Site(
-    /// Latitude
+    /// Latitude in degrees
     val lat: Double,
-    /// Longitude
+    /// Longitude in degrees
     val lng: Double,
     /// Site name
     val name: String,
@@ -26,5 +26,5 @@ data class OverheadPass(
     /// End date in string
     val end: String,
     /// Site Name
-    val side: String,
+    val satellite: String,
 )

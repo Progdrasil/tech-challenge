@@ -1,9 +1,15 @@
 package tech.challenge
 
 import com.github.michaelbull.result.*
+import org.hipparchus.util.FastMath
+import org.orekit.bodies.GeodeticPoint
+import org.orekit.frames.TopocentricFrame
 import org.orekit.propagation.analytical.tle.TLE
+import kotlin.math.PI
 
-
+/**
+ * Wrapper around a TLE in order to keep the title.
+ */
 class TitledTLE private constructor(val title: String?, val tle: TLE,){
     companion object {
         fun parse(data: String): Result<TitledTLE, TLEError> = binding {
@@ -19,3 +25,12 @@ class TitledTLE private constructor(val title: String?, val tle: TLE,){
         }.mapError { TLEError(toString(), it.toString()) }
     }
 }
+
+
+// 0 in altitude since we don't get it.
+private fun Site.toGeodeticPoint() = GeodeticPoint(FastMath.toRadians(lat), FastMath.toRadians(lng), 0.0)
+
+/**
+ * Convert a Site to a topological frame
+ */
+fun Site.toFrame() = TopocentricFrame(earth, toGeodeticPoint(), name)

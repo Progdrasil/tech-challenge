@@ -1,7 +1,10 @@
 package tech.challenge
 
+import com.github.michaelbull.result.onFailure
+import com.github.michaelbull.result.onSuccess
 import io.ktor.application.*
 import io.ktor.features.*
+import io.ktor.http.*
 import io.ktor.response.*
 import io.ktor.request.*
 import io.ktor.routing.*
@@ -27,10 +30,14 @@ fun Application.module(testing: Boolean = false) {
             post("/") {
                 val req = call.receive<Bundle>()
 
-                val res = calculateOverheadPasses(req)
-
-                call.respond(res)
-
+                calculateOverheadPasses(req)
+                    .onFailure { err ->
+                        call.response.status(HttpStatusCode.BadRequest)
+                        call.respond(ErrorMessage(err))
+                    }
+                    .onSuccess { res ->
+                        call.respond(res)
+                    }
             }
         }
 
